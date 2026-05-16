@@ -53,7 +53,7 @@ const skillsCategories = [
       { name: "GitHub", icon: "github" },
       { name: "GitLab", icon: "gitlab" },
       { name: "Jira", icon: "jira" },
-      { name: "VS Code", icon: "visualstudiocode" },
+      { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" },
       { name: "XCode", icon: "xcode" },
       { name: "Android Studio", icon: "androidstudio" },
       { name: "Postman", icon: "postman" },
@@ -139,7 +139,7 @@ const Skills = () => {
                     className="flex items-center gap-2 bg-muted/30 border border-border/50 px-4 py-2 rounded-xl hover:bg-muted/50 hover:border-primary/30 transition-all cursor-default"
                   >
                     <img
-                      src={`https://cdn.simpleicons.org/${skill.icon}`}
+                      src={skill.icon.startsWith("http") ? skill.icon : `https://cdn.simpleicons.org/${skill.icon}`}
                       alt={skill.name}
                       className="w-5 h-5 object-contain"
                       loading="lazy"
