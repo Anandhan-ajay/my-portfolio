@@ -137,7 +137,7 @@ const Projects = () => {
           className="mt-20 text-center"
         >
           <a
-            href="https://github.com/anandhank"
+            href="https://github.com/Anandhan-ajay"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-medium text-lg"
