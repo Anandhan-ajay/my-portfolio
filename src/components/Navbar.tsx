@@ -160,7 +160,7 @@ const Navbar = () => {
             >
               <a
                 href="/resume.pdf"
-                download
+                download="Anandhan_K_Resume.pdf"
                 className="group relative px-6 py-2.5 rounded-full bg-card/40 backdrop-blur-2xl border border-primary/50 text-foreground font-bold text-sm overflow-hidden flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-glow"
               >
                 <div className="absolute inset-0 bg-accent-gradient translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -244,7 +244,7 @@ const Navbar = () => {
                   >
                     <a
                       href="/resume.pdf"
-                      download
+                      download="Anandhan_K_Resume.pdf"
                       className="w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl bg-card/50 border border-primary/50 text-foreground font-bold text-sm shadow-glow active:bg-accent-gradient active:text-white transition-all"
                     >
                       <Download size={18} /> Resume
