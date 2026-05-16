@@ -1,109 +1,162 @@
 import { motion } from "framer-motion";
-import { Code2, Server, Cloud, Wrench } from "lucide-react";
+import { Monitor, Database, Server, Wrench, Code2 } from "lucide-react";
+import { Github } from "@/lib/icons";
 
-const skills = [
+const skillsCategories = [
   {
+    title: "Front End Development",
+    icon: Monitor,
+    color: "#0ea5e9",
+    skills: [
+      { name: "React JS", icon: "react" },
+      { name: "Next JS", icon: "nextdotjs" },
+      { name: "React Native", icon: "react" },
+      { name: "HTML", icon: "html5" },
+      { name: "CSS", icon: "css" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "Redux", icon: "redux" },
+      { name: "Bootstrap", icon: "bootstrap" },
+      { name: "Tailwind", icon: "tailwindcss" },
+      { name: "MUI", icon: "mui" },
+    ]
+  },
+  {
+    title: "Back End Development",
     icon: Code2,
-    title: "Front-End Development",
-    points: [
-      "Modern web apps with React, Next.js & TypeScript",
-      "Cross-platform mobile apps with React Native",
-      "State management with Redux Toolkit & Zustand",
-    ],
-    tags: ["React", "Next.js", "React Native", "TypeScript", "Tailwind"],
+    color: "#ec4899",
+    skills: [
+      { name: "Node JS", icon: "nodedotjs" },
+      { name: "Express JS", icon: "express" },
+      { name: "Nest JS", icon: "nestjs" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Python", icon: "python" },
+    ]
   },
   {
-    icon: Server,
-    title: "Back-End & Databases",
-    points: [
-      "REST APIs with Node.js and Express",
-      "Database design with MongoDB & Supabase",
-      "Authentication, payments and integrations",
-    ],
-    tags: ["Node.js", "Express", "MongoDB", "Supabase"],
+    title: "Databases and ORMs",
+    icon: Database,
+    color: "#10b981",
+    skills: [
+      { name: "MongoDB", icon: "mongodb" },
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "MySQL", icon: "mysql" },
+      { name: "mongoose", icon: "mongodb" },
+      { name: "TypeORM", icon: "typeorm" },
+    ]
   },
   {
-    icon: Cloud,
-    title: "Cloud & DevOps",
-    points: [
-      "Deploying serverless apps on AWS Lambda & API Gateway",
-      "Hosting & delivery with S3, CloudFront, CodePipeline",
-      "Monitoring with CloudWatch and CI/CD workflows",
-    ],
-    tags: ["AWS", "S3", "Lambda", "CloudFront"],
-  },
-  {
-    icon: Wrench,
     title: "Tools & Collaboration",
-    points: [
-      "Version control with Git, GitHub & GitLab",
-      "Agile workflows with Jira and ClickUp",
-      "API testing with Postman, design handoff via Figma",
-    ],
-    tags: ["Git", "Jira", "Postman", "Figma", "ClickUp"],
-  },
+    icon: Wrench,
+    color: "#f59e0b",
+    skills: [
+      { name: "Git", icon: "git" },
+      { name: "GitHub", icon: "github" },
+      { name: "GitLab", icon: "gitlab" },
+      { name: "Jira", icon: "jira" },
+      { name: "VS Code", icon: "visualstudiocode" },
+      { name: "XCode", icon: "xcode" },
+      { name: "Android Studio", icon: "androidstudio" },
+      { name: "Postman", icon: "postman" },
+      { name: "Figma", icon: "figma" },
+    ]
+  }
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 md:py-32 relative">
-      <div className="container">
+    <section id="skills" className="pt-16 pb-24 md:pt-20 md:pb-32 relative bg-background">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/10 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center mb-16"
         >
-          <p className="font-mono-code text-accent text-sm mb-3">// what i do</p>
-          <h2 className="text-4xl md:text-5xl font-display font-extrabold text-primary mb-4">
-            Crafting <span className="text-gradient">digital experiences</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Technical <span className="text-gradient">Proficiencies</span>
           </h2>
-          <p className="text-muted-foreground">
-            A multidisciplinary toolkit honed across 3+ years of shipping web and mobile products end-to-end.
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            A comprehensive overview of my technological stack and tools I use to bring ideas to life.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
-          {skills.map((s, i) => (
-            <motion.article
-              key={s.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -6 }}
-              className="group bg-card rounded-2xl p-7 md:p-8 shadow-card hover:shadow-glow transition-all border border-border/50"
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-8"
+        >
+          {skillsCategories.map((category, idx) => (
+            <motion.div
+              key={idx}
+              variants={itemVariants}
+              className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-8 hover:border-primary/20 transition-colors group shadow-glow"
             >
-              <div className="w-14 h-14 rounded-xl bg-accent-gradient grid place-items-center mb-5 group-hover:scale-110 transition-transform">
-                <s.icon className="text-accent-foreground" size={26} />
+              <div className="flex items-center gap-4 mb-8">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg"
+                  style={{ backgroundColor: category.color }}
+                >
+                  <category.icon className="text-white" size={24} />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground">{category.title}</h3>
               </div>
-              <h3 className="text-xl md:text-2xl font-display font-bold text-primary mb-4">
-                {s.title}
-              </h3>
-              <ul className="space-y-2.5 mb-5">
-                {s.points.map((p) => (
-                  <li key={p} className="flex gap-2 text-sm md:text-base text-muted-foreground">
-                    <span className="text-accent flex-shrink-0">⚡</span>
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap gap-2">
-                {s.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs font-mono-code px-3 py-1 rounded-full bg-secondary text-secondary-foreground"
+
+              <div className="flex flex-wrap gap-3">
+                {category.skills.map((skill, sIdx) => (
+                  <motion.div
+                    key={sIdx}
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center gap-2 bg-muted/30 border border-border/50 px-4 py-2 rounded-xl hover:bg-muted/50 hover:border-primary/30 transition-all cursor-default"
                   >
-                    {t}
-                  </span>
+                    <img
+                      src={`https://cdn.simpleicons.org/${skill.icon}`}
+                      alt={skill.name}
+                      className="w-5 h-5 object-contain"
+                      loading="lazy"
+                    />
+                    <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                      {skill.name}
+                    </span>
+                  </motion.div>
                 ))}
               </div>
-            </motion.article>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
 export default Skills;
+

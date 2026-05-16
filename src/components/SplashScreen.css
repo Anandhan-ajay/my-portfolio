@@ -1,0 +1,123 @@
+/* ===== Splash container ===== */
+.splash-container {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: hsl(var(--background));
+  overflow: hidden;
+  animation: splashOut 0.9s cubic-bezier(.22,1,.36,1) 3.2s forwards;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+/* Ambient glows */
+.glow-radial {
+  position: absolute; inset: 0;
+  background: var(--gradient-radial);
+  opacity: 0; animation: fadeInSplash 1s ease forwards;
+}
+.glow-blob {
+  position: absolute; width: 400px; height: 400px;
+  border-radius: 9999px; filter: blur(80px);
+  animation: floatSplash 6s ease-in-out infinite;
+}
+.glow-blob.one { top: 25%; left: 25%; background: hsl(var(--primary) / 0.2); }
+.glow-blob.two { bottom: 25%; right: 25%; background: hsl(var(--accent)  / 0.2); animation-delay: 1s; }
+
+/* ===== Hexagon + triangle stage ===== */
+.stage-splash {
+  position: relative; width: 224px; height: 224px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ring-splash {
+  position: absolute; border-radius: 9999px;
+  border: 1px dashed hsl(var(--primary) / 0.4);
+  animation: spinSplash 8s linear infinite;
+}
+.ring-splash.outer { inset: 0; }
+.ring-splash.inner { inset: 16px; border-color: hsl(var(--accent) / 0.4);
+              animation: spinSplash-rev 12s linear infinite; }
+
+.stage-splash svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  filter: drop-shadow(0 0 30px hsl(var(--primary) / 0.6));
+}
+
+/* SVG draw-on animations */
+.hex-stroke, .tri-stroke {
+  fill: none; stroke: url(#triGrad); stroke-linejoin: round;
+  stroke-dasharray: 1000; stroke-dashoffset: 1000;
+}
+.hex-stroke { stroke-width: 2.5;
+              animation: drawSplash 1.4s ease-in-out forwards; }
+.tri-stroke { stroke-width: 3;
+              animation: drawSplash 1.4s ease-in-out 0.5s forwards; }
+.hex-fill { fill: url(#triGrad); opacity: 0;
+            animation: fadeSplash 0.8s ease 1.2s forwards; --to: 0.06; }
+.tri-fill { fill: url(#triGrad); opacity: 0;
+            animation: fadeSplash 0.8s ease 1.7s forwards; --to: 0.18; }
+
+/* AK letters */
+.ak-splash {
+  position: absolute;
+  top: 62%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  font-weight: 700; font-size: 3.75rem; line-height: 1;
+  background: var(--gradient-cosmic);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  opacity: 0;
+  animation:
+    akInSplash 0.7s cubic-bezier(.22,1,.36,1) 1.2s forwards,
+    gradientShiftSplash 4s ease infinite 1.9s;
+}
+
+/* ===== Name reveal ===== */
+.reveal-splash { margin-top: 2.5rem; text-align: center; overflow: hidden; }
+.reveal-splash h1 {
+  margin: 0; font-weight: 700;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  transform: translateY(60px); opacity: 0;
+  animation: riseSplash 0.7s cubic-bezier(.22,1,.36,1) 1.8s forwards;
+}
+.reveal-splash p {
+  margin: 0.75rem 0 0; font-size: 0.875rem;
+  text-transform: uppercase; letter-spacing: 0.4em;
+  color: hsl(var(--muted-foreground));
+  transform: translateY(30px); opacity: 0;
+  animation: riseSplash 0.6s ease 2.1s forwards;
+}
+
+/* Loading bar */
+.bar-splash {
+  margin: 2rem auto 0; width: 12rem; height: 1px;
+  background: hsl(var(--border)); border-radius: 9999px; overflow: hidden;
+  opacity: 0; animation: fadeInSplash 0.4s ease 2.3s forwards;
+}
+.bar-splash > span {
+  display: block; height: 100%; width: 100%;
+  background: var(--gradient-cosmic);
+  transform: translateX(-100%);
+  animation: sweepSplash 0.9s ease-in-out 2.3s forwards;
+}
+
+/* ===== Keyframes ===== */
+@keyframes spinSplash     { to { transform: rotate(360deg); } }
+@keyframes spinSplash-rev { to { transform: rotate(-360deg); } }
+@keyframes floatSplash    { 0%,100% { transform: translateY(0); }
+                        50%     { transform: translateY(-20px); } }
+@keyframes fadeInSplash   { to { opacity: 1; } }
+@keyframes fadeSplash     { to { opacity: var(--to, 1); } }
+@keyframes drawSplash     { to { stroke-dashoffset: 0; } }
+@keyframes akInSplash     { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes riseSplash     { to { opacity: 1; transform: translateY(0); } }
+@keyframes sweepSplash    { to { transform: translateX(100%); } }
+@keyframes gradientShiftSplash {
+  0%,100% { background-position: 0% 50%; }
+  50%     { background-position: 100% 50%; }
+}
+@keyframes splashOut {
+  to { opacity: 0; transform: scale(1.1); filter: blur(20px);
+       visibility: hidden; }
+}

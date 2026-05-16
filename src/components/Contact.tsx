@@ -33,31 +33,31 @@ const Contact = () => {
             <div className="space-y-4">
               <a href="mailto:anandmars98@gmail.com" className="flex items-center gap-3 text-foreground hover:text-accent transition-colors group">
                 <span className="w-10 h-10 grid place-items-center rounded-full bg-card shadow-card group-hover:shadow-glow transition-all">
-                  <Mail size={18} />
+                  <img src="https://cdn.simpleicons.org/gmail" alt="Gmail" className="w-5 h-5" />
                 </span>
                 anandmars98@gmail.com
               </a>
               <a href="tel:+918220872636" className="flex items-center gap-3 text-foreground hover:text-accent transition-colors group">
                 <span className="w-10 h-10 grid place-items-center rounded-full bg-card shadow-card group-hover:shadow-glow transition-all">
-                  <Phone size={18} />
+                  <Phone size={18} className="text-primary" />
                 </span>
                 +91 82208 72636
               </a>
               <div className="flex items-center gap-3 text-foreground">
                 <span className="w-10 h-10 grid place-items-center rounded-full bg-card shadow-card">
-                  <MapPin size={18} />
+                  <MapPin size={18} className="text-accent" />
                 </span>
                 Puducherry, India
               </div>
               <div className="flex gap-3 pt-2">
-                <a href="https://linkedin.com/in/anandhank/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-11 h-11 grid place-items-center rounded-full bg-card shadow-card text-primary hover:text-accent hover:-translate-y-1 hover:shadow-glow transition-all">
-                  <Linkedin size={18} />
+                <a href="https://linkedin.com/in/anandhank/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-11 h-11 grid place-items-center rounded-full bg-card shadow-card hover:-translate-y-1 hover:shadow-glow transition-all">
+                  <Linkedin size={20} className="text-[#0077B5]" />
                 </a>
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="w-11 h-11 grid place-items-center rounded-full bg-card shadow-card text-primary hover:text-accent hover:-translate-y-1 hover:shadow-glow transition-all">
-                  <Github size={18} />
+                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="w-11 h-11 grid place-items-center rounded-full bg-card shadow-card hover:-translate-y-1 hover:shadow-glow transition-all">
+                  <img src="https://cdn.simpleicons.org/github" alt="GitHub" className="w-5 h-5 dark:invert" />
                 </a>
-                <a href="mailto:anandmars98@gmail.com" aria-label="Email" className="w-11 h-11 grid place-items-center rounded-full bg-card shadow-card text-primary hover:text-accent hover:-translate-y-1 hover:shadow-glow transition-all">
-                  <Mail size={18} />
+                <a href="mailto:anandmars98@gmail.com" aria-label="Email" className="w-11 h-11 grid place-items-center rounded-full bg-card shadow-card hover:-translate-y-1 hover:shadow-glow transition-all">
+                  <img src="https://cdn.simpleicons.org/gmail" alt="Gmail" className="w-5 h-5" />
                 </a>
               </div>
             </div>
@@ -82,15 +82,15 @@ const Contact = () => {
               <label className="text-sm font-medium text-foreground mb-1.5 block">Message</label>
               <textarea required name="message" rows={4} className="w-full px-4 py-3 rounded-lg bg-background border border-input focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition resize-none" />
             </div>
-            <button type="submit" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-accent-gradient text-accent-foreground font-semibold shadow-card hover:shadow-glow hover:-translate-y-0.5 transition-all">
+            <button type="submit" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-accent-gradient text-white font-semibold shadow-card hover:shadow-glow hover:-translate-y-0.5 transition-all">
               <Send size={16} /> Send Message
             </button>
           </motion.form>
         </div>
 
-        <p className="text-center text-sm text-muted-foreground mt-20">
-         Built and maintained by Anandhan <span className="text-accent">♥</span> © 2026
-        </p>
+        {/* <p className="text-center text-sm text-muted-foreground mt-20">
+          Built and maintained by Anandhan <span className="text-accent">♥</span> © 2026
+        </p> */}
       </div>
     </section>
   );
