@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
+import { Menu, X, ArrowUpRight, Sun, Moon, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -159,6 +159,21 @@ const Navbar = () => {
               animate={{ opacity: 1, x: 0 }}
             >
               <a
+                href="/resume.pdf"
+                download
+                className="group relative px-6 py-2.5 rounded-full bg-card/40 backdrop-blur-2xl border border-primary/50 text-foreground font-bold text-sm overflow-hidden flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-glow"
+              >
+                <div className="absolute inset-0 bg-accent-gradient translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                <Download size={18} className="relative z-10 group-hover:text-white transition-colors" />
+                <span className="relative z-10 group-hover:text-white transition-colors">Resume</span>
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+            >
+              <a
                 href="#contact"
                 className="group relative px-6 py-2.5 rounded-full bg-accent-gradient text-white font-bold text-sm overflow-hidden flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-glow"
               >
@@ -225,8 +240,15 @@ const Navbar = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: links.length * 0.05 }}
-                    className="pt-3 border-t border-border/50"
+                    className="pt-3 border-t border-border/50 flex flex-col gap-3"
                   >
+                    <a
+                      href="/resume.pdf"
+                      download
+                      className="w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl bg-card/50 border border-primary/50 text-foreground font-bold text-sm shadow-glow active:bg-accent-gradient active:text-white transition-all"
+                    >
+                      <Download size={18} /> Resume
+                    </a>
                     <a
                       href="#contact"
                       onClick={() => handleMobileClick("#contact")}
