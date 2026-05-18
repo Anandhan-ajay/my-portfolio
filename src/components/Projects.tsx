@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ArrowUpRight, ChevronRight } from "lucide-react";
 import { Github } from "@/lib/icons";
 import { cn } from "@/lib/utils";
 
@@ -8,33 +8,61 @@ const projects = [
     title: "Spryntz",
     category: "Mobile App",
     desc: "Cross-platform food ordering and delivery app serving 10,000+ users with real-time order tracking and integrated payments.",
+    features: [
+      "Developed core features for Android and iOS",
+      "Implemented onboarding, UI cards, order booking",
+      "Integrated payment gateway for secure transactions using Stripe",
+      "Collaborated with team for effective backend and database management"
+    ],
     tags: ["React Native", "Redux Toolkit", "REST APIs"],
     gradient: "from-orange-500/20 to-rose-500/20",
     accent: "orange",
+    url: "https://spryntz.com/",
   },
   {
-    title: "Mellow Plex",
-    category: "Web Platform",
-    desc: "High-performance entertainment discovery platform aggregating reviews, trailers and media for South Indian films.",
-    tags: ["Next.js", "React", "SSR", "SEO"],
+    title: "Project Management Tool",
+    category: "Internal Platform",
+    desc: "Internal tool for tracking employee attendance and daily work reports. Features role-based access for staff submissions and admin performance monitoring.",
+    features: [
+      "Developed role-based dashboards for staff and admin access",
+      "Implemented daily sign-in and sign-out functionality",
+      "Created modules for daily work report submissions",
+      "Built admin views for monitoring attendance and performance"
+    ],
+    tags: ["React", "Dashboard", "Auth", "Management"],
     gradient: "from-purple-500/20 to-indigo-500/20",
     accent: "purple",
+    url: "https://portal.solution22.com.au/login",
   },
   {
     title: "Plant365",
     category: "ERP Suite",
     desc: "Web-based management suite for RMC plant owners to manage customers, orders and invoices with interactive dashboards.",
+    features: [
+      "Developed interactive dashboards for RMC plant management",
+      "Implemented scalable systems for order and invoice tracking",
+      "Integrated interactive charts for real-time data visualization",
+      "Optimized cloud deployment using AWS services"
+    ],
     tags: ["React", "Redux", "AWS", "Charts"],
     gradient: "from-emerald-500/20 to-teal-500/20",
     accent: "emerald",
+    url: "https://plant365.in/",
   },
   {
     title: "Producer Bazaar",
     category: "Marketplace",
     desc: "Online marketplace where producers showcase and trade rights for movies and albums globally.",
+    features: [
+      "Developed structured interface with smooth navigation",
+      "Implemented responsive design for multi-device support",
+      "Learned the fundamentals of NFTs and blockchain integration",
+      "Optimized frontend components for efficient marketplace showcase"
+    ],
     tags: ["Next.js", "Node.js", "Express", "MongoDB"],
     gradient: "from-sky-500/20 to-blue-600/20",
     accent: "sky",
+    url: "https://producerbazaar.com/",
   },
 ];
 
@@ -60,7 +88,7 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {projects.map((p, i) => (
             <motion.article
               key={p.title}
@@ -68,10 +96,10 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: i * 0.15 }}
-              className="group relative flex flex-col"
+              className="group relative flex flex-col h-full"
             >
               <div className={cn(
-                "relative rounded-3xl overflow-hidden border border-border/50 bg-card/40 backdrop-blur-md transition-all duration-500",
+                "relative h-full flex flex-col rounded-3xl overflow-hidden border border-border/50 bg-card/40 backdrop-blur-md transition-all duration-500",
                 "group-hover:border-primary/20 group-hover:shadow-2xl group-hover:shadow-primary/5"
               )}>
                 {/* Gradient background */}
@@ -80,16 +108,21 @@ const Projects = () => {
                   p.gradient
                 )} />
 
+                {/* Decorative Number */}
+                <div className="absolute top-6 right-8 text-7xl font-black text-muted/10 pointer-events-none select-none z-0 transition-all duration-500 group-hover:text-primary/10">
+                  {(i + 1).toString().padStart(2, '0')}
+                </div>
+
                 {/* Content */}
-                <div className="relative z-10 p-8 md:p-10 flex flex-col min-h-[400px]">
-                  <div className="flex justify-between items-start mb-12">
-                    <div>
+                <div className="relative z-10 p-6 md:p-8 flex flex-col flex-1 min-h-[320px]">
+                  <div className="flex justify-between items-start mb-6 relative z-10">
+                    <div className="pr-4 md:pr-16">
                       <p className="text-xs font-bold text-accent uppercase tracking-[0.2em] mb-2">{p.category}</p>
-                      <h3 className="text-3xl md:text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                         {p.title}
                       </h3>
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 shrink-0">
                       <a
                         href="#"
                         className="w-10 h-10 rounded-full bg-card/50 flex items-center justify-center text-foreground/60 hover:bg-card hover:text-foreground transition-all border border-border/50"
@@ -97,7 +130,9 @@ const Projects = () => {
                         <Github size={18} />
                       </a>
                       <a
-                        href="#"
+                        href={p.url || "#"}
+                        target={p.url ? "_blank" : undefined}
+                        rel={p.url ? "noopener noreferrer" : undefined}
                         className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:scale-110 transition-all shadow-glow"
                       >
                         <ArrowUpRight size={18} />
@@ -105,15 +140,24 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  <p className="text-muted-foreground text-lg mb-8 line-clamp-3 group-hover:text-foreground/80 transition-colors">
+                  <p className="text-muted-foreground text-base mb-4 group-hover:text-foreground/80 transition-colors">
                     {p.desc}
                   </p>
 
-                  <div className="mt-auto pt-8 border-t border-border/50 flex flex-wrap gap-3">
+                  <ul className="flex flex-col gap-2.5 mb-6">
+                    {p.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-sm text-muted-foreground/90 group-hover:text-foreground/80 transition-colors">
+                        <ChevronRight className="shrink-0 w-4 h-4 mt-0.5 text-primary/70" />
+                        <span className="leading-relaxed">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto pt-4 border-t border-border/50 flex flex-wrap gap-2">
                     {p.tags.map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] font-bold px-3 py-1.5 rounded-lg bg-muted/50 text-muted-foreground border border-border/50"
+                        className="text-[10px] font-bold px-3 py-1.5 rounded-full bg-card border border-border/50 text-muted-foreground group-hover:text-foreground/80 group-hover:border-primary/20 transition-all shadow-sm"
                       >
                         {t}
                       </span>
