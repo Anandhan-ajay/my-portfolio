@@ -47,8 +47,9 @@ const Experience = () => {
                 >
                   {/* Timeline icon */}
                   <div className="absolute left-0 md:left-1/2 top-0 w-10 h-10 rounded-xl bg-card border border-border/50 shadow-glow flex items-center justify-center text-primary md:-translate-x-1/2 z-10 transition-transform hover:scale-110">
+                    <div className="absolute inset-0 rounded-xl bg-primary/40 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]" />
                     <div className="absolute inset-0 bg-accent-gradient opacity-10 rounded-xl" />
-                    <Icon size={18} />
+                    <Icon size={18} className="relative z-10" />
                   </div>
 
                   <div className="md:grid md:grid-cols-2 md:gap-20">
