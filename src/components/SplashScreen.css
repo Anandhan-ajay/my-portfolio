@@ -80,13 +80,18 @@
   letter-spacing: -0.02em;
   transform: translateY(60px); opacity: 0;
   animation: riseSplash 0.7s cubic-bezier(.22,1,.36,1) 1.8s forwards;
+  background: var(--gradient-cosmic);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
 }
 .reveal-splash p {
   margin: 0.75rem 0 0; font-size: 0.875rem;
   text-transform: uppercase; letter-spacing: 0.4em;
-  color: hsl(var(--muted-foreground));
   transform: translateY(30px); opacity: 0;
   animation: riseSplash 0.6s ease 2.1s forwards;
+  background: var(--gradient-cosmic);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
 }
 
 /* Loading bar */
